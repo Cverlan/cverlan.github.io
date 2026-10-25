@@ -1,63 +1,120 @@
-from pathlib import Path
 
-html = """<!doctype html>
+<!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Cverlan Lab 02 — Gizli Not</title>
-  <style>
-    :root { color-scheme: dark; }
-    body { margin: 0; min-height: 100vh; display: grid; place-items: center;
-      background: #0b1020; color: #e8ecf7; font: 16px/1.5 system-ui, sans-serif; }
-    main { width: min(440px, calc(100% - 40px)); padding: 28px; box-sizing: border-box;
-      background: #151d32; border: 1px solid #2b3858; border-radius: 16px; }
-    h1 { margin-top: 0; font-size: 1.5rem; }
-    p { color: #b9c5df; }
-    label { display: block; margin: 18px 0 6px; }
-    input, button { width: 100%; box-sizing: border-box; padding: 12px;
-      border-radius: 9px; font: inherit; }
-    input { background: #0b1020; color: white; border: 1px solid #405174; }
-    button { margin-top: 12px; border: 0; background: #8db5ff; color: #0b1020;
-      font-weight: 700; cursor: pointer; }
-    #result { min-height: 1.5em; margin-top: 14px; }
-    .hint { font-size: .9rem; color: #91a4c9; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hacked By Cverlan</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #030303;
+  color: white;
+  font-family: Consolas, monospace;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    rgba(0,255,0,.035) 2px,
+    transparent 4px
+  );
+}
+.terminal {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: #00ff77;
+  font-size: 13px;
+  text-align: left;
+  line-height: 1.8;
+}
+.container {
+  padding: 25px;
+  z-index: 1;
+}
+.glitch {
+  position: relative;
+  font-size: clamp(35px, 7vw, 90px);
+  font-weight: 900;
+  color: #ff1738;
+  letter-spacing: 4px;
+  text-shadow: 3px 0 #00ff77, -3px 0 #008cff;
+  animation: glitch 0.3s infinite alternate;
+}
+@keyframes glitch {
+  0% { transform: translate(0); }
+  25% { transform: translate(2px,-1px); }
+  50% { transform: translate(-3px,2px); }
+  75% { transform: translate(3px,1px); }
+  100% { transform: translate(-1px,-2px); }
+}
+.flag {
+  font-size: 95px;
+  margin: 20px 0;
+}
+h2 {
+  font-size: clamp(32px, 6vw, 75px);
+  margin: 15px 0;
+  color: #00b85a;
+  text-shadow: 0 0 25px #008844;
+}
+.message {
+  color: #ddd;
+  font-size: 18px;
+  line-height: 1.8;
+}
+.signature {
+  margin-top: 50px;
+  color: #00ff77;
+  letter-spacing: 5px;
+}
+.cursor {
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+</style>
 </head>
 <body>
-  <main>
-    <h1>Gizli Not Kasası</h1>
-    <p>Bu yerel eğitim sayfasında bir not kilitli. Kaynak kodunu inceleyerek erişim bilgisini bulmayı dene.</p>
-    <form id="unlock-form">
-      <label for="passcode">Erişim parolası</label>
-      <input id="passcode" type="password" autocomplete="off" placeholder="Parolayı gir">
-      <button type="submit">Kasayı aç</button>
-    </form>
-    <p id="result" role="status" aria-live="polite"></p>
-    <p class="hint">Lab 02 · Yalnızca bu dosyada, çevrimdışı pratik için tasarlanmıştır.</p>
-  </main>
-  <script>
-    // Eğitim notu: İstemci tarafına gömülen sırlar kaynak kodundan görülebilir.
-    const ACCESS_CODE = "MAPLE-731";
-    const SECRET_NOTE = "Tebrikler! İpucu: Gerçek sitelerde gizli anahtarları HTML/JavaScript içine koyma.";
 
-    document.querySelector("#unlock-form").addEventListener("submit", (event) => {
-      event.preventDefault();
-      const entered = document.querySelector("#passcode").value;
-      const result = document.querySelector("#result");
-      if (entered === ACCESS_CODE) {
-        result.textContent = SECRET_NOTE;
-        result.style.color = "#9fe6b8";
-      } else {
-        result.textContent = "Parola yanlış. Kaynak kodunu inceleyip tekrar dene.";
-        result.style.color = "#ffb0b0";
-      }
-    });
-  </script>
+<div class="terminal">
+  [+] SYSTEM ACCESS: SIMULATION<br>
+  [+] OPERATOR: CVERLAN<br>
+  [+] MESSAGE: FREE PALESTINE<br>
+  [+] STATUS: DISPLAY ACTIVE
+</div>
+
+<main class="container">
+  <div class="glitch">HACKED BY CVERLAN</div>
+
+  <div class="flag">🇵🇸</div>
+
+  <h2>FREE PALESTINE</h2>
+
+  <div class="message">
+    We stand for freedom, justice and humanity.<br>
+    Silence is not an option.<br>
+    Özgür Filistin!
+  </div>
+
+  <div class="signature">
+    &gt; CVERLAN <span class="cursor">_</span>
+  </div>
+</main>
+
 </body>
 </html>
-"""
-
-path = Path("/mnt/data/cverlan_lab_02.html")
-path.write_text(html, encoding="utf-8")
-print(f"Dosya oluşturuldu: {path} ({path.stat().st_size} bayt)")
